@@ -1,52 +1,46 @@
-// Packages needed for this application
-const inquirer = require('inquirer');
-const fs = require('fs');
+const inquirer = require("inquirer")
+const Manager = require('./manager')
 
-const generateHTML = ({ name, department, title}) =>
-  `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <title>Document</title>
-</head>
-<body>
-    <header>My Team</header>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="card">
-            <h1 class="display-4">${name}</h1>
-                <p class="lead">Department: ${department}</p>
-                <p class="lead">Title: ${title}</p>
-                <h3><span class="badge badge-secondary">Contact Info</span></h3>
-        </div>
-    </div>
-</body>
-</html>`;
+const startProgram = () => {
+    inquirer.prompt([
+        {
+            message: "What is the manager's name?",
+            name: "newmgr",
+            type: 'input'
+        },
+        {
+            message: "What is the manager's ID?",
+            name: "newmgrid",
+            type: 'input'
+        },
+        {
+            message: "What is the manager's email?",
+            name: "newmgremail",
+            type: 'input'
+        },
+        {
+            message: "What is the manager's office Number?",
+            name: "newmgroffice",
+            type: 'input'
+        },
+    ]).then(answers => {
+        mainMenu()
+    })
+}
 
-// Questions for user input
-inquirer.prompt([
-    {
-        type: "input",
-        name: "name",
-        message: "What is the name of the team member you are looking for?"
-    },
-    {
-        type: "input",
-        name: "department",
-        message: "What department are they in?"
-    },
-    {
-        type: "input",
-        name: "title",
-        message: "What is their title?"
-    },
+const mainMenu = () => {
+    inquirer.prompt([
+        {
+            message: "What would you like to do?",
+            name:"option",
+            type: "list",
+            choices: ["Add Engineer", "Add Intern", "I am done adding"]
+        }
+    ]).then(answers => {
+        if(answers.option == "Add Engineer") {
+            //ask questoins of engineer, similar to the start program prompt
+        }
+    })
+}
 
-])
-.then((answers) => {
-    const htmlPageContent = generateHTML(answers);
-
-    fs.writeFile('index.html', htmlPageContent, (err) =>
-      err ? console.log(err) : console.log('Successfully created file!')
-    );
-  });
+startProgram()
