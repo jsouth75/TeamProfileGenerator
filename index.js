@@ -181,6 +181,14 @@ const mainMenu = () => {
                 mainMenu();
             })
         };
+
+        const completeMyTeam = () => {
+            console.log('Building My Team!!!');
+            if (!fs.existsSync(OUTPUT_DIR)) {
+                fs.mkdirSync(OUTPUT_DIR)
+            }
+            fs.writeFileSync(outputPath, profilePage, "utf-8");
+        }
     
 
 startProgram()
