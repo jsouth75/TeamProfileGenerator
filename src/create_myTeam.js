@@ -1,54 +1,106 @@
+const path = require("path");
+const fs = require("fs");
 const Engineer = require("../lib/engineer");
 const Manager = require("../lib/manager");
 
 const createTeam = (myTeam) => {
     const html = [];
-    const createMgr = Manager => {
-        let mgrFile = 
-            <div class="card" style="width: 18rem;">
-                <div class="card-header">${Manager.name}
-                    <i class="fas fa-mug-hot"></i>Manager
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">ID: ${Manager.id}</li>
-                    <li class="list-group-item">Email: <span id='email'>
-                        <a href="maiilto:${manager.email}">${Manager.email}</a>
-                        </span>
-                    </li>
-                    <li class="list-group-item">Office Number: ${Manager.officeNumber}</li>
-                </ul>
-            </div>
+    const createMgr = manager => {
+        let mgrFile = ` 
+        <div class="card" style="width: 18rem">
+        <div class="card-header">${manager.name}
+        <i class="fas fa-mug-hot"></i>Manager
+        </div>
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item">ID: ${manager.id}</li>
+        <li class="list-group-item">Email: <span id='email'>
+        <a href="maiilto:${manager.email}">${manager.email}</a>
+        </span>
+        </li>
+        <li class="list-group-item">Office Number: ${manager.officeNumber}</li>
+        </ul>
+        </div>
+        `;
             html.push(mgrFile);
     }
-    const createEng = Engineer => {
-        let engFile =
-            <div class="card" style="width: 18rem;">
-                <div class="card-header">
-                    <i class="fas fa-mug-hot"></i>Engineer
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">ID: ${Engineer.id}</li>
-                    <li class="list-group-item">Email: <span id="email">
-                        <a href="mailto:${engineer.email}">${Engineer.email}</a>
-                        </span></li>
-                    <li class="list-group-item">GitHub username: 
-                        <a target = '_blank' href="https://github.com/${engineer.github}">${Engineer.github}</a>
-                    </li>
-                </ul>
-            </div>
-    }
-    const createIntern = Intern => {
-        <div class="card" style="width: 18rem;">
-            <div class="card-header">
-                <i class="fas fa-mug-hot"></i>Intern
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID: ${Intern.id}</li>
-                <li class="list-group-item">Email: <span id="email">
-                        <a href="mailto:${intern.email}">${Intern.email}</a>
-                        </span></li>
-                <li class="list-group-item">School: ${Intern.school}</li>
-            </ul>
+    const createEng = engineer => {
+        let engFile = `
+        <div class="card" style="width: 18rem">
+        <div class="card-header">
+        <i class="fas fa-mug-hot"></i>Engineer
         </div>
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item">ID: ${engineer.id}</li>
+        <li class="list-group-item">Email: <span id="email">
+        <a href="mailto:${engineer.email}">${engineer.email}</a>
+        </span></li>
+        <li class="list-group-item">GitHub username: 
+        <a target = '_blank' href="https://github.com/${engineer.github}">${engineer.github}</a>
+        </li>
+        </ul>
+        </div>
+        `;
+            html.push(engFile);
     }
+
+    const createIntern = intern => {
+        let internFile = `
+        <div class="card" style="width: 18rem">
+        <div class="card-header">
+        <i class="fas fa-mug-hot"></i>Intern
+        </div>
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item">ID: ${intern.id}</li>
+        <li class="list-group-item">Email: <span id="email">
+        <a href="mailto:${intern.email}">${intern.email}</a>
+        </span></li
+        <li class="list-group-item">School: ${intern.school}</li>
+        </ul>
+        </div>
+        `;
+            html.push(internFile);
+    }
+
+    for (let i = 0; i < myTeam.length; i++) {
+        if (myTeam[i].getRole() === "Manager") {
+            createMgr(myTeam[i]);
+        }
+        if (myTeam[i].getRole() === "Engineer") {
+            createEng(myTeam[i]);
+        }
+        if (myTeam[i].getRole() === "Intern") {
+            createIntern(myTeam[i]);
+        }
+    }
+
+    return html.join('');
+}
+
+module.exports = myTeam => {
+    return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" 
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" 
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="./style.css">
+        <title>My Team Profile</title>
+    </head>
+    <body>
+        
+        <div class="container-fluid row col-12 jumbotron mb-3">
+            <header>
+                 <h1 class="text-center">My Team</h1>
+            </header>   
+        </div>
+
+        <main> ${createTeam(myTeam)} </main>
+    
+    </body>
+    </html>
+    `;
 }

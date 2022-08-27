@@ -5,10 +5,9 @@ const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 const fs = require("fs");
 const path = require("path");
+const OUTPUT_DIR = path.resolve(__dirname, "dist")
+const outputTeam = path.join(OUTPUT_DIR, "myTeam.html");
 const createdTeam = require('./src/create_myTeam');
-const createDir = path.resolve(__dirname, "dist");
-const outputTeam = path.join(createDir, "myTeam.html");
-
 const myTeam = [];
 
 const startProgram = () => {
@@ -55,7 +54,7 @@ const mainMenu = () => {
             case "Add Intern":
                 internMenu();
                 break;
-            default:
+            case "Finished building My Team":
                 completeMyTeam();
         }
     });
@@ -127,11 +126,12 @@ const mainMenu = () => {
 
         const completeMyTeam = () => {
             console.log('My Team is complete!!!');
-            if (!fs.existsSync(createDir)) {
-                fs.mkdirSync(createDir)
+            if (!fs.existsSync(OUTPUT_DIR)) {
+                fs.mkdirSync(OUTPUT_DIR)
             }
             fs.writeFileSync(outputTeam, createdTeam(myTeam), "utf-8");
         }
     
 
-startProgram()
+startProgram();
+

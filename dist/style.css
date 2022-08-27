@@ -20,11 +20,9 @@ main {
 .card {
     padding: 1rem;
     margin: .5rem;
-    border-radius: .5rem;
 }
 
 .card-header {
     background-color: rgb(47, 101, 251);
     color: white;
-    border-radius: .5rem;
 }
