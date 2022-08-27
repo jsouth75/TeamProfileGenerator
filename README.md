@@ -1,10 +1,10 @@
 # Team Profile Generator
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://choosealicense.com/licenses/mit/#)
 
 ## Demo Video
 
-<a href=""><img src="" alt="Demo video screenshot" /></a>
+<a href="https://drive.google.com/file/d/18zcwagYfWxA40EGAJbYvk6SWNo92GZXQ/view" title="TeamProfileGenerator_demo">Link to Demo Video</a>
 
 ## Table of Content
 - [Description](#description)
@@ -26,6 +26,7 @@ npm i
 ## Usage
 
 This application is to be invoked from CLI by enter node.index.js
+<img src="./assets/myTeam_HTML_page.png">
 
 ## Test
 
