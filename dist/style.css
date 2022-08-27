@@ -1,0 +1,30 @@
+body {
+    border-style: outset;
+}
+
+header {
+    color: white;
+    background-color: rgb(205, 7, 7);
+    padding: 1rem;
+    margin: .5rem;
+    border-radius: .5rem;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    margin: .5rem;
+    padding: 1rem;
+}
+
+.card {
+    padding: 1rem;
+    margin: .5rem;
+    border-radius: .5rem;
+}
+
+.card-header {
+    background-color: rgb(47, 101, 251);
+    color: white;
+    border-radius: .5rem;
+}
