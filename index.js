@@ -13,52 +13,59 @@ const myTeam = [];
 const startProgram = () => {
     inquirer.prompt([
         {
+            message: "What would you like to do?",
+            name:"option",
+            type: "list",
+            choices: ["Add Manager", "Add Engineer", "Add Intern", "Finished building My Team"]
+        },
+        ]).then(answers => {
+            switch (answers.option) {
+                case "Add Manager":
+                    managerMenu();
+                    break;
+                case "Add Engineer":
+                    engineerMenu();
+                    break;
+                case "Add Intern":
+                    internMenu();
+                    break;
+                case "Finished building My Team":
+                    completeMyTeam();
+            }
+        });
+    };
+        
+    const managerMenu = () => {
+        console.log(`Add Manager`);
+        return inquirer.prompt([
+        {
             message: "What is the manager's name?",
-            name: "newMgr",
+            name: "managerName",
             type: 'input',
         },
         {
             message: "What is the manager's ID?",
-            name: "newMgrId",
+            name: "managerId",
             type: 'input',
         },
         {
             message: "What is the manager's email?",
-            name: "newMgrEmail",
+            name: "managerEmail",
             type: 'input',
         },
         {
             message: "What is the manager's office Number?",
-            name: "newMgrOffice",
+            name: "officeNumber",
             type: 'input',
         },
 
     ]).then(answers => {
-        mainMenu()
+        console.log(answers);
+        const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.officeNumber);
+        myTeam.push(manager);
+        startProgram();
     })
-}
-    
-const mainMenu = () => {
-    inquirer.prompt([
-        {
-            message: "What would you like to do?",
-            name:"option",
-            type: "list",
-            choices: ["Add Engineer", "Add Intern", "Finished building My Team"]
-        }
-    ]).then(answers => {
-        switch (answers.option) {
-            case "Add Engineer":
-                engineerMenu();
-                break;
-            case "Add Intern":
-                internMenu();
-                break;
-            case "Finished building My Team":
-                completeMyTeam();
-        }
-    });
-};
+    };
 
     const engineerMenu = () => {
         console.log(`Add Engineer`);
@@ -88,7 +95,7 @@ const mainMenu = () => {
             console.log(answers);
             const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.githubUsername);
             myTeam.push(engineer);
-            mainMenu();
+            startProgram();
         })
     };
 
@@ -120,17 +127,17 @@ const mainMenu = () => {
                 console.log(answers);
                 const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.schoolName);
                 myTeam.push(intern);
-                mainMenu();
+                startProgram();
             })
-        };
+    };
 
-        const completeMyTeam = () => {
-            console.log('My Team is complete!!!');
-            if (!fs.existsSync(OUTPUT_DIR)) {
-                fs.mkdirSync(OUTPUT_DIR)
-            }
-            fs.writeFileSync(outputTeam, createdTeam(myTeam), "utf-8");
+    const completeMyTeam = () => {
+        console.log('My Team is complete!!!');
+        if (!fs.existsSync(OUTPUT_DIR)) {
+            fs.mkdirSync(OUTPUT_DIR)
         }
+        fs.writeFileSync(outputTeam, createdTeam(myTeam), "utf-8");
+    }
     
 
 startProgram();

@@ -1,18 +1,22 @@
-const Manager = require("../lib/manager")
+const Manager = require("../lib/manager");
+const manager = new Manager('Jason', 7, 'jason@gmail.com', 16);
 
 test('Make sure that what I create is an object', ()=> {
-    const testSubject = new Manager("Stanley Lewis", 7, "slewis@gmail.com")
+    const testSubject = new Manager()
     expect(typeof testSubject).toBe("object")
-    
-    test('Make sure that when I input a new name it matches the expectation', ()=> {
-        expect(testSubject.getName()).toBe("Stanley Lewis");
-    });
-    
-    test('Make sure that when I input a new ID it matches the expectation', ()=> {
-        expect(testSubject.getId()).toBe(7);
-    });
-    
-    test('Make sure that when I input a new email it matches the expectation', ()=> {
-        expect(testSubject.getName()).toBe("slewis@gmail.com");
-    });
+});
+
+test('constructor values for an Manager', () => {
+    expect(manager.name).toBe('Jason');
+    expect(manager.id).toBe(7);
+    expect(manager.email).toBe('jason@gmail.com');
+    expect(manager.officeNumber).toBe(16);
+});
+
+test('get value from getOffice()', ()=> {
+    expect(manager.getOffice()).toBe(16);
+});
+
+test('get value from getRole()', ()=> {
+    expect(manager.getRole()).toBe('Manager');
 });

@@ -1,15 +1,11 @@
-const path = require("path");
-const fs = require("fs");
-const Engineer = require("../lib/engineer");
-const Manager = require("../lib/manager");
 
 const createTeam = (myTeam) => {
     const html = [];
     const createMgr = manager => {
         let mgrFile = ` 
         <div class="card" style="width: 18rem">
-        <div class="card-header">${manager.name}
-        <i class="fas fa-mug-hot"></i>Manager
+        <div class="card-header">${manager.name} <br>
+        <i class="fa-solid fa-mug-hot"></i>Manager
         </div>
         <ul class="list-group list-group-flush">
         <li class="list-group-item">ID: ${manager.id}</li>
@@ -26,8 +22,8 @@ const createTeam = (myTeam) => {
     const createEng = engineer => {
         let engFile = `
         <div class="card" style="width: 18rem">
-        <div class="card-header">
-        <i class="fas fa-mug-hot"></i>Engineer
+        <div class="card-header">${engineer.name} <br>
+        <i class="fa-solid fa-glasses"></i>Engineer
         </div>
         <ul class="list-group list-group-flush">
         <li class="list-group-item">ID: ${engineer.id}</li>
@@ -46,14 +42,14 @@ const createTeam = (myTeam) => {
     const createIntern = intern => {
         let internFile = `
         <div class="card" style="width: 18rem">
-        <div class="card-header">
-        <i class="fas fa-mug-hot"></i>Intern
+        <div class="card-header">${intern.name} <br>
+        <i class="fa-solid fa-user-graduate"></i>Intern
         </div>
         <ul class="list-group list-group-flush">
         <li class="list-group-item">ID: ${intern.id}</li>
         <li class="list-group-item">Email: <span id="email">
         <a href="mailto:${intern.email}">${intern.email}</a>
-        </span></li
+        </span></li>
         <li class="list-group-item">School: ${intern.school}</li>
         </ul>
         </div>
@@ -87,6 +83,7 @@ module.exports = myTeam => {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" 
             integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" 
             crossorigin="anonymous">
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
         <link rel="stylesheet" href="./style.css">
         <title>My Team Profile</title>
     </head>
