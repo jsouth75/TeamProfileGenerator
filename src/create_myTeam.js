@@ -83,8 +83,8 @@ module.exports = myTeam => {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" 
             integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" 
             crossorigin="anonymous">
-        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
         <link rel="stylesheet" href="./style.css">
+        <script src="https://kit.fontawesome.com/4b0bd6fc01.js" crossorigin="anonymous"></script>
         <title>My Team Profile</title>
     </head>
     <body>
