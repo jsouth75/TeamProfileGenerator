@@ -1,4 +1,4 @@
-
+// create Manager HTML card
 const createTeam = (myTeam) => {
     const html = [];
     const createMgr = manager => {
@@ -19,6 +19,8 @@ const createTeam = (myTeam) => {
         `;
             html.push(mgrFile);
     }
+
+// create Engineer HTML card
     const createEng = engineer => {
         let engFile = `
         <div class="card" style="width: 18rem">
@@ -39,6 +41,7 @@ const createTeam = (myTeam) => {
             html.push(engFile);
     }
 
+// create Intern HTML card
     const createIntern = intern => {
         let internFile = `
         <div class="card" style="width: 18rem">
@@ -57,6 +60,7 @@ const createTeam = (myTeam) => {
             html.push(internFile);
     }
 
+// For loop checking on input from user
     for (let i = 0; i < myTeam.length; i++) {
         if (myTeam[i].getRole() === "Manager") {
             createMgr(myTeam[i]);

@@ -10,6 +10,7 @@ const outputTeam = path.join(OUTPUT_DIR, "myTeam.html");
 const createdTeam = require('./src/create_myTeam');
 const myTeam = [];
 
+// Prompted with questions
 const startProgram = () => {
     inquirer.prompt([
         {
@@ -34,7 +35,8 @@ const startProgram = () => {
             }
         });
     };
-        
+
+// Prompted questions when user selects Add Manager
     const managerMenu = () => {
         console.log(`Add Manager`);
         return inquirer.prompt([
@@ -67,6 +69,7 @@ const startProgram = () => {
     })
     };
 
+// Prompted questions when user selects Add Engineer
     const engineerMenu = () => {
         console.log(`Add Engineer`);
         return inquirer.prompt([
@@ -99,6 +102,7 @@ const startProgram = () => {
         })
     };
 
+// Prompted questions when user selects Add Intern
     const internMenu = () => {
         console.log(`Add Intern`);
         return inquirer.prompt([
@@ -131,6 +135,7 @@ const startProgram = () => {
             })
     };
 
+// Team is created when "Finish building my Team" is selected
     const completeMyTeam = () => {
         console.log('My Team is complete!!!');
         if (!fs.existsSync(OUTPUT_DIR)) {
